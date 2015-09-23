@@ -10,4 +10,7 @@
     <string name="searchingDevices">Buscando Dispositivos</string>
     <string name="about">Detalles de la Aplicación</string>
     <string name="main_activity_search_devices">Conectar al carro</string>
+    <string name="title_activity_cabin">Cabin</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
