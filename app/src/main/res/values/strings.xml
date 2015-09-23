@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name" >Carduino RC</string>
+
+    <string name="ma_title">Conectar al carro</string>
+    <string name="main_activity_action">Buscar Dispositivos</string>
+    <string name="bondendDevices">Dispositivos Disponibles</string>
+    <string name="title_activity_search_devices">Buscando Dispositivos</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="searchingDevices">Buscando Dispositivos</string>
+    <string name="about">Detalles de la Aplicación</string>
+    <string name="main_activity_search_devices">Conectar al carro</string>
+</resources>

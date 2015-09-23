@@ -1,0 +1,15 @@
+<resources>
+    <!-- Color de ActionBar -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/colorActionBar</item>
+        <item name="actionBarStyle">@style/colorActionBar</item>
+    </style>
+
+    <style name="colorActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/md_teal_500</item>
+        <item name="background">@color/md_teal_500</item>
+    </style>
+
+    <style name="Theme.AppCompat.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar"></style>
+</resources>
+
