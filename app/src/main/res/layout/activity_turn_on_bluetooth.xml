@@ -4,14 +4,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="me.alfredobejarano.carduinorc.TurnOnBluetooth">
-
+    tools:context="me.alfredobejarano.carduinorc.TurnOnBluetooth"
+    android:background="@color/md_semiwhite">
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/turnonbluetooth_activity_title"
-        android:id="@+id/turnonbluetooth_switch"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/switchBluetooth"
+        android:text="@string/title_activity_turn_on_bluetooth"
+        android:textSize="32dp"
+        android:textColor="@color/md_grey_900"
+        />
+
 </RelativeLayout>

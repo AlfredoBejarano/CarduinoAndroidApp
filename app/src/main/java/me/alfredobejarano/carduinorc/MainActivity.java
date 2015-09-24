@@ -5,24 +5,23 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-public class ListDevices extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     private ListView lista;
     private Button botonBusqueda;
     private int backButtonCount = 0;
-    private BluetoothDevice dispositivoEnviar;
     private ArrayAdapter adaptadorLista;
-    private ArrayList<BluetoothDevice> dispositivos = new ArrayList<>();
     private Set<BluetoothDevice> emparejados;
     private ArrayList<BluetoothDevice> encontrados;
     private ArrayList<String> nombresEmparejados = new ArrayList<>();
@@ -33,7 +32,7 @@ public class ListDevices extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_devices);
+        setContentView(R.layout.activity_main);
 
         lista = (ListView) findViewById(R.id.lista);
         botonBusqueda = (Button) findViewById(R.id.buttonSearch);
@@ -44,8 +43,7 @@ public class ListDevices extends AppCompatActivity {
 
 
         if(!adaptadorBt.isEnabled()) {
-            adaptadorBt.enable();
-            i = new Intent(ListDevices.this, TurnOnBluetooth.class);
+            i = new Intent(MainActivity.this, TurnOnBluetooth.class);
             startActivity(i);
         } else {
             emparejados = obtenerEmparejados(adaptadorBt);
@@ -53,14 +51,12 @@ public class ListDevices extends AppCompatActivity {
             if(emparejados.size() > 0) {
                 nombresEmparejados = llenarNombres(emparejados);
                 nombres.addAll(nombresEmparejados);
-                dispositivos.addAll(emparejados);
             }
 
             if (encontrados != null) {
                 if(encontrados.size() > 0) {
                     nombresEncontrados = llenarNombres(encontrados);
                     nombres.addAll(nombresEncontrados);
-                    dispositivos.addAll(encontrados);
                 }
             }
 
@@ -72,20 +68,10 @@ public class ListDevices extends AppCompatActivity {
             adaptadorLista = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombres);
             lista.setAdapter(adaptadorLista);
 
-            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    dispositivoEnviar = dispositivos.get(position);
-                    Intent ie = new Intent(ListDevices.this, Cabin.class);
-                    ie.putExtra("dispositivo",dispositivoEnviar);
-                    startActivity(ie);
-                }
-            });
-
             botonBusqueda.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(ListDevices.this, SearchDevices.class);
+                    Intent i = new Intent(MainActivity.this, SearchDevices.class);
                     if(!adaptadorBt.isEnabled()) {
                         adaptadorBt.enable();
                     }
@@ -141,16 +127,10 @@ public class ListDevices extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if(backButtonCount >= 1)
-        {
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }
-        else
-        {
-            Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
-            backButtonCount++;
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
@@ -161,10 +141,25 @@ public class ListDevices extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.buscar_dispositivos) {
+        if (id == R.id.action_settings) {
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backButtonCount >= 1)
+        {
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+        }
+        else
+        {
+            Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
     }
 }
