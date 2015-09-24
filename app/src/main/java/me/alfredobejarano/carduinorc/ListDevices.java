@@ -5,20 +5,18 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+public class ListDevices extends AppCompatActivity {
     private ListView lista;
     private Button botonBusqueda;
     private int backButtonCount = 0;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_devices);
 
         lista = (ListView) findViewById(R.id.lista);
         botonBusqueda = (Button) findViewById(R.id.buttonSearch);
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!adaptadorBt.isEnabled()) {
             adaptadorBt.enable();
-            i = new Intent(MainActivity.this, MainActivity.class);
+            i = new Intent(ListDevices.this, TurnOnBluetooth.class);
             startActivity(i);
         } else {
             emparejados = obtenerEmparejados(adaptadorBt);
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     dispositivoEnviar = dispositivos.get(position);
-                    Intent ie = new Intent(MainActivity.this, Cabin.class);
+                    Intent ie = new Intent(ListDevices.this, Cabin.class);
                     ie.putExtra("dispositivo",dispositivoEnviar);
                     startActivity(ie);
                 }
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             botonBusqueda.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this, SearchDevices.class);
+                    Intent i = new Intent(ListDevices.this, SearchDevices.class);
                     if(!adaptadorBt.isEnabled()) {
                         adaptadorBt.enable();
                     }
@@ -153,5 +151,20 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.buscar_dispositivos) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

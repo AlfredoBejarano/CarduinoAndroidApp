@@ -6,12 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.hardware.camera2.params.BlackLevelPattern;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +38,7 @@ public class SearchDevices extends AppCompatActivity {
 
             if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(estado)) {
                 Toast.makeText(context,"Busqueda Finalizada", Toast.LENGTH_SHORT);
-                Intent i = new Intent(SearchDevices.this, MainActivity.class);
+                Intent i = new Intent(SearchDevices.this, ListDevices.class);
                 Log.d("","\n"+dispositivosEncontrados.size());
                 i.putParcelableArrayListExtra("dispositivosEncontrados", dispositivosEncontrados);
                 startActivity(i);

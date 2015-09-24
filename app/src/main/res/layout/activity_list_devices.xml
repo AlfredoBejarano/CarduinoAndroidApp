@@ -11,7 +11,7 @@
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bondendDevices"
+        android:text="@string/listdevices_activity_subtitle"
         android:textColor="@color/md_grey_900"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -21,19 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_below="@id/subtitle"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/buttonSearch"></ListView>
+        ></ListView>
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:text="@string/main_activity_action"
-        android:background="@color/md_deep_orange_500"
-        android:textColor="@color/md_white_1000"
-        android:textSize="24dp"
-        android:textAlignment="center"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
