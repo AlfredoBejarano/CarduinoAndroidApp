@@ -7,15 +7,21 @@
     tools:context="me.alfredobejarano.carduinorc.TurnOnBluetooth"
     android:background="@color/md_semiwhite">
 
-    <Switch
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:textColor="@color/md_grey_900"
+        android:text="@string/title_activity_turn_on_bluetooth"
+        android:layout_above="@+id/loading"
+        android:layout_centerHorizontal="true"
+        android:textSize="32dp"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/switchBluetooth"
-        android:text="@string/title_activity_turn_on_bluetooth"
-        android:textSize="32dp"
-        android:textColor="@color/md_grey_900"
-        />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

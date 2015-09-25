@@ -1,7 +1,10 @@
 package me.alfredobejarano.carduinorc;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +17,7 @@ public class TurnOnBluetooth extends AppCompatActivity {
 
     private Switch switchBt;
     private int backButtonCount = 0;
+    private IntentFilter filtro = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
     private Intent i;
     private final BluetoothAdapter adaptadorBt = BluetoothAdapter.getDefaultAdapter();
 
@@ -24,35 +28,18 @@ public class TurnOnBluetooth extends AppCompatActivity {
 
         i = new Intent(TurnOnBluetooth.this, MainActivity.class);
 
-        if(!adaptadorBt.isEnabled()) {
-            switchBt = (Switch) findViewById(R.id.switchBluetooth);
-            switchBt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked) {
-                        adaptadorBt.enable();
-                        startActivity(i);
-                    } else {
-                        adaptadorBt.disable();
-                    }
-                }
-            });
-        }
-
-
+        this.registerReceiver(receptorBc, filtro);
+            adaptadorBt.enable();
     }
 
-    @Override
-    public void onBackPressed() {
-        if(backButtonCount >= 1)
-        {
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(0);
+    private BroadcastReceiver receptorBc = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String estado = intent.getAction();
+            if(BluetoothAdapter.ACTION_STATE_CHANGED.equals(estado)) {
+                startActivity(i);
+            }
         }
-        else
-        {
-            Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
-            backButtonCount++;
-        }
-    }
+    };
+
 }

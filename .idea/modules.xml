@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CarduinoRC.iml" filepath="$PROJECT_DIR$/CarduinoRC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarduinoAndroidApp.iml" filepath="$PROJECT_DIR$/CarduinoAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -153,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(backButtonCount >= 1)
         {
-            android.os.Process.killProcess(android.os.Process.myPid());
+            finish();
+            moveTaskToBack(true);
             System.exit(0);
         }
         else

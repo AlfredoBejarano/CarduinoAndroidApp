@@ -11,17 +11,14 @@
         android:id="@+id/searchActivity_tittle"
         android:textColor="@color/md_grey_900"
         android:textSize="32dp"
+        android:layout_above="@+id/bluetoothdevices"
         android:text="@string/searchingDevices"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <ProgressBar
         android:id="@+id/bluetoothdevices"
-        android:textColor="@color/md_teal_500"
-        android:textSize="64dp"
-        android:text=""
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"

@@ -10,6 +10,6 @@
     <string name="searchingDevices">Buscando Dispositivos</string>
     <string name="about">Detalles de la Aplicación</string>
     <string name="main_activity_search_devices">Conectar al carro</string>
-    <string name="title_activity_turn_on_bluetooth">Encender Bluetooth</string>
+    <string name="title_activity_turn_on_bluetooth">Encendiendo Bluetooth</string>
 
 </resources>

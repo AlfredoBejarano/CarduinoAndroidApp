@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class SearchDevices extends AppCompatActivity {
 
-    private TextView titulo;
     private IntentFilter filtro = new IntentFilter();
     private final BluetoothAdapter adaptadorBt = BluetoothAdapter.getDefaultAdapter();
     private ArrayList<BluetoothDevice> dispositivosEncontrados = new ArrayList<>();
@@ -27,11 +26,9 @@ public class SearchDevices extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            titulo = (TextView) findViewById(R.id.bluetoothdevices);
             String estado = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(estado)) {
                 BluetoothDevice dispositivoEncontrado = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                titulo.setText(titulo.getText()+".");
                 dispositivosEncontrados.add(dispositivoEncontrado);
             }
 
@@ -42,7 +39,6 @@ public class SearchDevices extends AppCompatActivity {
             if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(estado)) {
                 Toast.makeText(context,"Busqueda Finalizada", Toast.LENGTH_SHORT);
                 Intent i = new Intent(SearchDevices.this, MainActivity.class);
-                Log.d("","\n"+dispositivosEncontrados.size());
                 i.putParcelableArrayListExtra("dispositivosEncontrados", dispositivosEncontrados);
                 startActivity(i);
             }
